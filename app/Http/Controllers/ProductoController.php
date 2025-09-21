@@ -40,10 +40,12 @@ class ProductoController extends Controller
         try {
             $data = $request->validated();
 
-            // Manejar la imagen si se subió
+            // Manejo de imagen: subida o URL externa
             if ($request->hasFile('imagen')) {
                 $imagePath = $request->file('imagen')->store('productos', 'public');
                 $data['imagen'] = $imagePath;
+            } elseif ($request->filled('imagen_url')) {
+                $data['imagen'] = $request->imagen_url;
             }
 
             $producto = Producto::create($data);
@@ -106,15 +108,16 @@ class ProductoController extends Controller
         try {
             $data = $request->validated();
 
-            // Manejar la imagen si se subió
+            // Manejo de imagen: subida o URL externa
             if ($request->hasFile('imagen')) {
-                // Eliminar imagen anterior si existe
-                if ($producto->imagen) {
+                // Eliminar imagen anterior local si existía y era local
+                if ($producto->imagen && !str_starts_with($producto->imagen, 'http')) {
                     Storage::disk('public')->delete($producto->imagen);
                 }
-                
                 $imagePath = $request->file('imagen')->store('productos', 'public');
                 $data['imagen'] = $imagePath;
+            } elseif ($request->filled('imagen_url')) {
+                $data['imagen'] = $request->imagen_url;
             }
 
             $producto->update($data);

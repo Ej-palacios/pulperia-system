@@ -14,15 +14,44 @@ class ClienteController extends Controller
     /**
      * Listar todos los clientes
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clientes = Cliente::withSum('creditos', 'monto')
-            ->withSum('abonos', 'monto')
-            ->get()
+        $query = Cliente::withSum('creditos', 'monto')
+            ->withSum('abonos', 'monto');
+
+        // Search by ID or name
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('id', 'like', "%{$search}%")
+                  ->orWhere('nombre', 'like', "%{$search}%")
+                  ->orWhere('cedula', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter by status
+        if ($request->filled('estado')) {
+            $query->where('activo', $request->estado === 'activo');
+        }
+
+        $clientes = $query->get()
             ->map(function ($cliente) {
-                $cliente->saldo = $cliente->creditos_sum_monto - $cliente->abonos_sum_monto;
+                $cliente->saldo_calculado = round($cliente->creditos_sum_monto - $cliente->abonos_sum_monto, 2);
                 return $cliente;
             });
+
+        // Filter by debt status after calculating saldo
+        if ($request->filled('saldo')) {
+            if ($request->saldo === 'con_deuda') {
+                $clientes = $clientes->filter(function ($cliente) {
+                    return $cliente->saldo_calculado > 0;
+                });
+            } elseif ($request->saldo === 'sin_deuda') {
+                $clientes = $clientes->filter(function ($cliente) {
+                    return $cliente->saldo_calculado <= 0;
+                });
+            }
+        }
 
         return view('clientes.index', compact('clientes'));
     }

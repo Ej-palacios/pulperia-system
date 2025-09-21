@@ -1,0 +1,187 @@
+/* Estilos para la gestión de créditos */
+.credits-container {
+    background: var(--fluent-white);
+    border-radius: var(--fluent-radius-lg);
+    box-shadow: var(--fluent-shadow-sm);
+    overflow: hidden;
+}
+
+.filters-section {
+    padding: var(--fluent-space-lg);
+    border-bottom: 1px solid var(--fluent-gray-30);
+    display: flex;
+    gap: var(--fluent-space-lg);
+    align-items: end;
+    flex-wrap: wrap;
+}
+
+.search-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.filter-controls {
+    display: flex;
+    gap: var(--fluent-space-md);
+    align-items: end;
+    flex-wrap: wrap;
+}
+
+.fluent-select {
+    padding: var(--fluent-space-sm) var(--fluent-space-md);
+    border: 1px solid var(--fluent-gray-40);
+    border-radius: var(--fluent-radius-md);
+    font-size: var(--fluent-font-size-sm);
+    min-width: 150px;
+}
+
+.credits-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--fluent-space-lg);
+    padding: var(--fluent-space-lg);
+    background: var(--fluent-gray-10);
+    border-bottom: 1px solid var(--fluent-gray-30);
+}
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    gap: var(--fluent-space-md);
+    padding: var(--fluent-space-md);
+    background: var(--fluent-white);
+    border-radius: var(--fluent-radius-md);
+    box-shadow: var(--fluent-shadow-sm);
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--fluent-primary-light);
+    border-radius: var(--fluent-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--fluent-primary);
+}
+
+.summary-content {
+    flex: 1;
+}
+
+.summary-value {
+    font-size: var(--fluent-font-size-xl);
+    font-weight: 700;
+    color: var(--fluent-gray-120);
+    margin-bottom: var(--fluent-space-xs);
+}
+
+.summary-label {
+    font-size: var(--fluent-font-size-sm);
+    color: var(--fluent-gray-70);
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fluent-space-xs);
+}
+
+.client-name {
+    font-weight: 600;
+    color: var(--fluent-gray-120);
+}
+
+.client-phone {
+    font-size: var(--fluent-font-size-xs);
+    color: var(--fluent-gray-70);
+}
+
+.status-badge {
+    padding: 2px var(--fluent-space-xs);
+    border-radius: var(--fluent-radius-sm);
+    font-size: var(--fluent-font-size-xs);
+    font-weight: 600;
+}
+
+.status-pendiente {
+    background: var(--fluent-warning-light);
+    color: var(--fluent-warning);
+}
+
+.status-parcialmente_pagado {
+    background: var(--fluent-info-light);
+    color: var(--fluent-info);
+}
+
+.status-pagado {
+    background: var(--fluent-success-light);
+    color: var(--fluent-success);
+}
+
+.status-vencido {
+    background: var(--fluent-error-light);
+    color: var(--fluent-error);
+}
+
+.overdue-days {
+    color: var(--fluent-error);
+    font-weight: 600;
+    font-size: var(--fluent-font-size-xs);
+}
+
+.days-remaining {
+    color: var(--fluent-success);
+    font-weight: 600;
+    font-size: var(--fluent-font-size-xs);
+}
+
+.action-buttons {
+    display: flex;
+    gap: var(--fluent-space-xs);
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--fluent-space-xl);
+    color: var(--fluent-gray-70);
+}
+
+.empty-state h3 {
+    margin: var(--fluent-space-md) 0 var(--fluent-space-sm);
+    color: var(--fluent-gray-100);
+}
+
+.empty-state p {
+    margin-bottom: var(--fluent-space-lg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filters-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-container {
+        min-width: auto;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+    }
+    
+    .fluent-select {
+        min-width: auto;
+    }
+    
+    .credits-summary {
+        grid-template-columns: 1fr;
+    }
+}
+

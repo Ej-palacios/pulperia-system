@@ -37,9 +37,10 @@ class ReporteController extends Controller
         $totalVentas = $ventas->sum('total');
         $ventasContado = $ventas->where('tipo_pago', 'contado')->sum('total');
         $ventasCredito = $ventas->where('tipo_pago', 'credito')->sum('total');
+        $totalRegistros = $ventas->total();
 
         return view('reportes.ventas', compact(
-            'ventas', 'totalVentas', 'ventasContado', 'ventasCredito', 'fechaInicio', 'fechaFin'
+            'ventas', 'totalVentas', 'ventasContado', 'ventasCredito', 'totalRegistros', 'fechaInicio', 'fechaFin'
         ));
     }
 

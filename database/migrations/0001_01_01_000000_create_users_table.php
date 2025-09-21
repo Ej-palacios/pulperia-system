@@ -8,18 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('role', ['admin', 'cajero'])->default('cajero');
-            $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->rememberToken();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+Schema::create('users', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');           // Nombre real
+    $table->string('apellido');       // Apellido real
+    $table->string('username')->unique(); // ¡Nuevo! Identificador único para login
+    $table->string('role')->default('usuario'); // 'admin' o 'usuario'
+    $table->timestamp('email_verified_at')->nullable();
+    $table->string('password');
+    $table->rememberToken();
+    $table->timestamps();
+});
     }
 
     public function down(): void

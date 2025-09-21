@@ -1,20 +1,19 @@
 // ventas-pos.jsx - Componente React para el punto de venta
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+// Usando React desde CDN en lugar de imports
 
 const VentasPOS = () => {
-    const [productos, setProductos] = useState([]);
-    const [carrito, setCarrito] = useState([]);
-    const [categorias, setCategorias] = useState([]);
-    const [categoriaActiva, setCategoriaActiva] = useState('todos');
-    const [terminoBusqueda, setTerminoBusqueda] = useState('');
-    const [tipoVenta, setTipoVenta] = useState('contado');
-    const [clienteSeleccionado, setClienteSeleccionado] = useState(null);
-    const [clientes, setClientes] = useState([]);
-    const [configuracion, setConfiguracion] = useState({ impuesto: 15 });
+    const [productos, setProductos] = React.useState([]);
+    const [carrito, setCarrito] = React.useState([]);
+    const [categorias, setCategorias] = React.useState([]);
+    const [categoriaActiva, setCategoriaActiva] = React.useState('todos');
+    const [terminoBusqueda, setTerminoBusqueda] = React.useState('');
+    const [tipoVenta, setTipoVenta] = React.useState('contado');
+    const [clienteSeleccionado, setClienteSeleccionado] = React.useState(null);
+    const [clientes, setClientes] = React.useState([]);
+    const [configuracion, setConfiguracion] = React.useState({ impuesto: 15 });
 
     // Cargar datos iniciales
-    useEffect(() => {
+    React.useEffect(() => {
         cargarDatosIniciales();
     }, []);
 
@@ -306,8 +305,7 @@ const VentasPOS = () => {
 
 // Renderizar el componente
 if (document.getElementById('pos-react')) {
-    const root = createRoot(document.getElementById('pos-react'));
-    root.render(<VentasPOS />);
+    const container = document.getElementById('pos-react');
+    const root = ReactDOM.createRoot(container);
+    root.render(React.createElement(VentasPOS));
 }
-
-export default VentasPOS;

@@ -26,6 +26,7 @@ class StoreProductoRequest extends FormRequest
             'stock' => 'required|numeric|min:0',
             'stock_minimo' => 'required|numeric|min:0',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'imagen_url' => 'nullable|url',
             'activo' => 'boolean',
         ];
     }
@@ -48,6 +49,7 @@ class StoreProductoRequest extends FormRequest
             'imagen.image' => 'El archivo debe ser una imagen válida.',
             'imagen.mimes' => 'La imagen debe ser JPEG, PNG, JPG o GIF.',
             'imagen.max' => 'La imagen no debe pesar más de 2MB.',
+            'imagen_url.url' => 'El enlace de imagen debe ser una URL válida.',
         ];
     }
 

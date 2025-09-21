@@ -9,16 +9,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('telefono')->nullable()->after('email');
-            $table->text('direccion')->nullable()->after('telefono');
-            $table->boolean('activo')->default(true)->after('direccion');
+            $table->string('telefono')->nullable()->after('username');
+            // Puedes añadir otros campos aquí sin depender de 'email'
         });
     }
 
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['telefono', 'direccion', 'activo']);
+            $table->dropColumn('telefono');
         });
     }
 };

@@ -35,6 +35,9 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
+        // Contar productos con stock bajo
+        $stockBajoCount = Producto::where('stock', '<=', DB::raw('stock_minimo'))->count();
+
         // Valor total del inventario
         $valorInventario = Producto::sum(DB::raw('stock * costo_compra'));
 
@@ -50,6 +53,7 @@ class DashboardController extends Controller
             'ventasMes',
             'totalCreditos',
             'productosStockBajo',
+            'stockBajoCount',
             'valorInventario',
             'ventasRecientes'
         ));

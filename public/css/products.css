@@ -1,0 +1,139 @@
+/* Estilos para la gestión de productos */
+.products-container {
+    background: var(--fluent-white);
+    border-radius: var(--fluent-radius-lg);
+    box-shadow: var(--fluent-shadow-sm);
+    overflow: hidden;
+}
+
+.filters-section {
+    padding: var(--fluent-space-lg);
+    border-bottom: 1px solid var(--fluent-gray-30);
+    display: flex;
+    gap: var(--fluent-space-lg);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.filter-controls {
+    display: flex;
+    gap: var(--fluent-space-md);
+}
+
+.fluent-select {
+    padding: var(--fluent-space-sm) var(--fluent-space-md);
+    border: 1px solid var(--fluent-gray-40);
+    border-radius: var(--fluent-radius-md);
+    font-size: var(--fluent-font-size-sm);
+    min-width: 150px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fluent-space-xs);
+}
+
+.product-name {
+    font-weight: 600;
+    color: var(--fluent-gray-120);
+}
+
+.product-description {
+    font-size: var(--fluent-font-size-xs);
+    color: var(--fluent-gray-70);
+}
+
+.stock-badge {
+    padding: 2px var(--fluent-space-xs);
+    border-radius: var(--fluent-radius-sm);
+    font-size: var(--fluent-font-size-xs);
+    font-weight: 600;
+}
+
+.stock-alto {
+    background: var(--fluent-success-light);
+    color: var(--fluent-success);
+}
+
+.stock-medio {
+    background: var(--fluent-info-light);
+    color: var(--fluent-info);
+}
+
+.stock-bajo {
+    background: var(--fluent-warning-light);
+    color: var(--fluent-warning);
+}
+
+.stock-agotado {
+    background: var(--fluent-error-light);
+    color: var(--fluent-error);
+}
+
+.status-badge {
+    padding: 2px var(--fluent-space-xs);
+    border-radius: var(--fluent-radius-sm);
+    font-size: var(--fluent-font-size-xs);
+    font-weight: 600;
+}
+
+.status-active {
+    background: var(--fluent-success-light);
+    color: var(--fluent-success);
+}
+
+.status-inactive {
+    background: var(--fluent-gray-20);
+    color: var(--fluent-gray-80);
+}
+
+.action-buttons {
+    display: flex;
+    gap: var(--fluent-space-xs);
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--fluent-space-xl);
+    color: var(--fluent-gray-70);
+}
+
+.empty-state h3 {
+    margin: var(--fluent-space-md) 0 var(--fluent-space-sm);
+    color: var(--fluent-gray-100);
+}
+
+.empty-state p {
+    margin-bottom: var(--fluent-space-lg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filters-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-container {
+        min-width: auto;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+    }
+    
+    .fluent-select {
+        min-width: auto;
+    }
+}
+
