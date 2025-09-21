@@ -10,79 +10,87 @@
             <div class="card-body">
 
                 @if(session('error'))
-                    <div class="alert alert-danger">{{ session('error') }}</div>
+                    <x-fluent-alert type="error">{{ session('error') }}</x-fluent-alert>
                 @endif
 
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
-                    <x-input 
+                    <x-fluent-input 
                         label="Nombre" 
                         name="name" 
                         type="text" 
                         required 
                         autofocus
+                        icon="user"
+                        :error="$errors->first('name')"
+                        value="{{ old('name') }}"
                     />
 
-                    <x-input 
+                    <x-fluent-input 
                         label="Apellido" 
                         name="apellido" 
                         type="text" 
                         required 
+                        icon="user"
+                        :error="$errors->first('apellido')"
+                        value="{{ old('apellido') }}"
                     />
 
-                    <x-input 
-                        label="Nombre de Usuario (Username)" 
+                    <x-fluent-input 
+                        label="Nombre de Usuario" 
                         name="username" 
                         type="text" 
                         required 
-                        placeholder="elijer_un_nombre_unico"
+                        placeholder="elije_un_nombre_unico"
+                        icon="user-shield"
+                        :error="$errors->first('username')"
+                        value="{{ old('username') }}"
                     />
 
-                    <x-input 
+                    <x-fluent-input 
                         label="Contraseña" 
                         name="password" 
                         type="password" 
                         required 
+                        icon="lock"
+                        :error="$errors->first('password')"
                     />
 
-                    <x-input 
+                    <x-fluent-input 
                         label="Confirmar Contraseña" 
                         name="password_confirmation" 
                         type="password" 
                         required 
+                        icon="lock"
                     />
 
-                    <div class="mb-3">
-                        <label for="role" class="form-label">Rol</label>
-                        <select id="role" name="role" class="form-select" required>
-                            <option value="">Selecciona un rol</option>
-                            <option value="usuario" {{ old('role') == 'usuario' ? 'selected' : '' }}>Usuario</option>
-                            @if(!$adminExists)
-                                <option value="administrador" {{ old('role') == 'administrador' ? 'selected' : '' }}>Administrador</option>
-                                <option value="dueño" {{ old('role') == 'dueño' ? 'selected' : '' }}>Dueño</option>
-                            @endif
-                        </select>
-
-                        @if($adminExists)
-                            <div class="form-text text-muted">Ya existe un administrador. Solo puedes registrarte como Usuario.</div>
-                        @else
-                            <div class="form-text text-warning">Solo puede haber un Administrador en el sistema.</div>
+                    <x-fluent-select
+                        label="Rol"
+                        name="role"
+                        required
+                        :error="$errors->first('role')"
+                    >
+                        <option value="">Selecciona un rol</option>
+                        <option value="usuario" {{ old('role') == 'usuario' ? 'selected' : '' }}>Usuario</option>
+                        @if(!$adminExists)
+                            <option value="administrador" {{ old('role') == 'administrador' ? 'selected' : '' }}>Administrador</option>
+                            <option value="dueño" {{ old('role') == 'dueño' ? 'selected' : '' }}>Dueño</option>
                         @endif
-                    </div>
+                    </x-fluent-select>
 
                     <div class="d-grid">
-                        <x-button type="submit" color="success">
-                            <i class="fas fa-user-plus me-2"></i>Registrar Usuario
-                        </x-button>
+                        <x-fluent-button type="submit" variant="success" size="large">
+                            Registrar Usuario
+                        </x-fluent-button>
                     </div>
                 </form>
 
                 <div class="text-center mt-3">
                     <p class="mb-0">¿Ya tienes una cuenta?</p>
-                    <a href="{{ route('login') }}" class="btn btn-link">
-                        <i class="fas fa-sign-in-alt me-1"></i>Iniciar Sesión
-                    </a>
+                    <x-fluent-button href="{{ route('login') }}" variant="link">
+                        Iniciar Sesión
+                    </x-fluent-button>
                 </div>
             </div>
         </div>

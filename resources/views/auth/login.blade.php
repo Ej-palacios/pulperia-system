@@ -10,45 +10,48 @@
             <div class="card-body">
 
                 @if(session('error'))
-                    <div class="alert alert-danger">{{ session('error') }}</div>
+                    <x-fluent-alert type="error">{{ session('error') }}</x-fluent-alert>
                 @endif
 
                 @if(session('warning'))
-                    <div class="alert alert-warning">{{ session('warning') }}</div>
+                    <x-fluent-alert type="warning">{{ session('warning') }}</x-fluent-alert>
                 @endif
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <x-input 
-                        label="Nombre de Usuario (Username)" 
+                    <x-fluent-input 
+                        label="Nombre de Usuario" 
                         name="username" 
                         type="text" 
                         required 
                         autofocus
+                        icon="user"
+                        :error="$errors->first('username')"
+                        value="{{ old('username') }}"
                     />
 
-                    <!-- El rol se determina automáticamente por el sistema -->
-
-                    <x-input 
+                    <x-fluent-input 
                         label="Contraseña" 
                         name="password" 
                         type="password" 
                         required 
+                        icon="lock"
+                        :error="$errors->first('password')"
                     />
 
                     <div class="d-grid">
-                        <x-button type="submit" color="primary">
-                            <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
-                        </x-button>
+                        <x-fluent-button type="submit" variant="primary" size="large">
+                            Iniciar Sesión
+                        </x-fluent-button>
                     </div>
                 </form>
 
                 <div class="text-center mt-3">
                     <p class="mb-0">¿No tienes cuenta?</p>
-                    <a href="{{ route('register') }}" class="btn btn-link">
-                        <i class="fas fa-user-plus me-1"></i>Registrar Usuario
-                    </a>
+                    <x-fluent-button href="{{ route('register') }}" variant="link">
+                        Registrar Usuario
+                    </x-fluent-button>
                 </div>
             </div>
         </div>
